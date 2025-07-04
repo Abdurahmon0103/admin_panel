@@ -10,7 +10,7 @@
     <div>
       <Sheet>
         <SheetTrigger as-child>
-          <Button variant="outline"
+          <Button variant="outline" class="sm:hidden"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -304,7 +304,7 @@
         </SheetContent>
       </Sheet>
     </div>
-    <Sheet>
+    <Sheet class="">
       <SheetTrigger class="cursor-pointer"
         ><img
           src="../components/user.svg"
@@ -312,7 +312,7 @@
           class="hover:bg-white bg-white"
       /></SheetTrigger>
       <SheetContent class="items-center flex">
-        <SheetHeader class="w-32">
+        <SheetHeader class="w-32 max-sm:w-24">
           <img
             src="../components/user.svg"
             alt=""
@@ -367,7 +367,7 @@
         </div>
         <RouterLink to="LogIn">
           <div
-            class="flex gap-2 px-4 py-2 bg-gray-200 w-6/7 rounded-md hover:bg-red-500 transition-all duration-150 hover:text-white cursor-pointer active:bg-red-700 mt-[600px] text-red-500"
+            class="max-sm:absolute max-sm:bottom-4 max-sm:right-5 flex gap-2 px-4 py-2 bg-gray-200 w-6/7 rounded-md hover:bg-red-500 transition-all duration-150 hover:text-white cursor-pointer active:bg-red-700 mt-[600px] text-red-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -382,6 +382,8 @@
             >LogOut
           </div>
         </RouterLink>
+        <SheetTitle></SheetTitle>
+        <SheetDescription></SheetDescription>
       </SheetContent>
     </Sheet>
   </header>
@@ -398,4 +400,5 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 </script>
