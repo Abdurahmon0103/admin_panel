@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <div class="grid grid-cols-5 gap-4">
+  <div class="p-4">
+    <!-- Filter Controls - Stacked on mobile -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
       <div class="relative w-full">
         <Select>
           <SelectTrigger class="w-full">
@@ -24,233 +25,292 @@
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="apple"> Ta'minotch </SelectItem>
-              <SelectItem value="banana"> Ta'minotch </SelectItem>
-              <SelectItem value="blueberry"> Ta'minotch </SelectItem>
-              <SelectItem value="grapes"> Ta'minotch </SelectItem>
-              <SelectItem value="pineapple"> Ta'minotch </SelectItem>
+              <SelectItem value="taminotchi1"> Ta'minotchi 1 </SelectItem>
+              <SelectItem value="taminotchi2"> Ta'minotchi 2 </SelectItem>
+              <SelectItem value="taminotchi3"> Ta'minotchi 3 </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
-      <div><Input type="email" placeholder="Email" /></div>
-      <div><Input type="email" placeholder="Email" /></div>
-      <div class="flex gap-4">
-        <Button variant="outline"> Secondary </Button>
-        <Button variant="outline"> Destructive </Button>
+      <div class="w-full">
+        <Input type="text" placeholder="Kod" />
       </div>
-      <div class="flex w-[1513px] justify-between">
-        <div class="relative w-full max-w-sm items-center">
-          <Input
-            id="search"
-            type="text"
-            placeholder="Search..."
-            class="pl-10"
-          />
-          <span
-            class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
-          >
-            <Search class="size-6 text-muted-foreground" />
-          </span>
-        </div>
-        <div>
-          <Dialog>
-            <DialogTrigger as-child>
-              <Button variant="destructive">+ Inventarizatsiya</Button>
-            </DialogTrigger>
-            <DialogContent class="sm:max-w-[425px]">
-              <div
-                class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-              >
-                <div class="bg-white w-full max-w-4xl rounded-lg shadow-lg p-6">
-                  <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold">Inventarizatsiya</h2>
-                    <Button
-                      class="text-gray-500 hover:text-gray-700 text-xl"
-                      variant="ghost"
-                    >
-                      &times;
-                    </Button>
-                  </div>
-
-                  <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label class="block text-sm font-medium mb-1"
-                        >Standart size
-                        <span class="text-red-500">*</span></label
-                      >
-                      <select class="w-full border rounded px-3 py-2">
-                        <option disabled selected>Tanlang</option>
-                      </select>
-                    </div>
-
-                    <!-- Boyi -->
-                    <div>
-                      <label class="block text-sm font-medium mb-1"
-                        >Boyi <span class="text-red-500">*</span></label
-                      >
-                      <input
-                        type="text"
-                        class="w-full border rounded px-3 py-2"
-                      />
-                    </div>
-
-                    <!-- Valyuta -->
-                    <div>
-                      <label class="block text-sm font-medium mb-1"
-                        >Valyuta <span class="text-red-500">*</span></label
-                      >
-                      <select class="w-full border rounded px-3 py-2">
-                        <option disabled selected>Tanlang</option>
-                      </select>
-                    </div>
-
-                    <!-- Ombor -->
-                    <div>
-                      <label class="block text-sm font-medium mb-1"
-                        >Ombor <span class="text-red-500">*</span></label
-                      >
-                      <select class="w-full border rounded px-3 py-2">
-                        <option disabled selected>Tanlang</option>
-                      </select>
-                    </div>
-
-                    <!-- Kategoriya -->
-                    <div>
-                      <label class="block text-sm font-medium mb-1"
-                        >Kategoriya <span class="text-red-500">*</span></label
-                      >
-                      <select class="w-full border rounded px-3 py-2">
-                        <option disabled selected>Tanlang</option>
-                      </select>
-                    </div>
-
-                    <!-- Miqdor -->
-                    <div>
-                      <label class="block text-sm font-medium mb-1"
-                        >Miqdor <span class="text-red-500">*</span></label
-                      >
-                      <Input
-                        type="number"
-                        class="w-full border rounded px-3 py-2"
-                      />
-                    </div>
-
-                    <div>
-                      <Label class="block text-sm font-medium mb-1"
-                        >Tan narxi</Label
-                      >
-                      <input
-                        type="text"
-                        class="w-full border rounded px-3 py-2"
-                      />
-                    </div>
-
-                    <div>
-                      <Label class="block text-sm font-medium mb-1"
-                        >Sotuv narxi</Label
-                      >
-                      <input
-                        type="text"
-                        class="w-full border rounded px-3 py-2"
-                      />
-                    </div>
-
-                    <div class="md:col-span-2">
-                      <label class="block text-sm font-medium mb-1">Izoh</label>
-                      <textarea
-                        class="w-full border rounded px-3 py-2"
-                        rows="3"
-                      ></textarea>
-                    </div>
-                  </form>
-
-                  <div class="flex justify-end mt-6 space-x-2">
-                    <Button variant="outline"> Yopish </Button>
-                    <Button type="submit" variant="destructive">Saqlash</Button>
-                  </div>
-                </div>
-              </div>
-              <DialogFooter> </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </div>
+      <div class="w-full">
+        <Input type="text" placeholder="Nomi" />
+      </div>
+      <div class="flex gap-2 w-full">
+        <Button variant="outline" class="flex-1"> Tozalash </Button>
+        <Button variant="outline" class="flex-1"> Qidirish </Button>
       </div>
     </div>
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-      <div class="overflow-x-auto shadow-md rounded-lg mr-20 mt-5">
-        <table class="w-full bg-white text-sm text-gray-700">
-          <thead class="bg-gray-100 border-b border-gray-300">
-            <tr>
-              <th class="py-3 px-4 text-left font-semibold">№</th>
-              <th class="py-3 px-4 text-left font-semibold">Omborxona</th>
-              <th class="py-3 px-4 text-left font-semibold">Tovar</th>
-              <th class="py-3 px-4 text-left font-semibold">Code</th>
-              <th class="py-3 px-4 text-left font-semibold">Eni</th>
-              <th class="py-3 px-4 text-left font-semibold">Bo'yi</th>
-              <th class="py-3 px-4 text-left font-semibold">Soni</th>
-              <th class="py-3 px-4 text-left font-semibold">Qoldiq</th>
-              <th class="py-3 px-4 text-left font-semibold">Jami</th>
-              <th class="py-3 px-4 text-left font-semibold">Valyuta</th>
-              <th class="py-3 px-4 text-left font-semibold">Narx</th>
-              <th class="py-3 px-4 text-left font-semibold">Sotuv narxi</th>
-              <th class="py-3 px-4 text-left font-semibold">Umumiy Narx</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200">
-            <tr
-              v-for="(item, index) in tableData"
-              :key="item.id"
-              class="hover:bg-gray-50"
+
+    <!-- Search and Action Bar -->
+    <div
+      class="flex flex-col md:flex-row gap-4 mb-6 justify-between items-start md:items-center"
+    >
+      <div class="relative w-full md:max-w-md">
+        <Input
+          id="search"
+          type="text"
+          placeholder="Qidirish..."
+          class="pl-10 w-full"
+        />
+        <span
+          class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
+        >
+          <Search class="size-5 text-muted-foreground" />
+        </span>
+      </div>
+
+      <Dialog>
+        <DialogTrigger as-child>
+          <Button variant="destructive" class="w-full md:w-auto">
+            + Inventarizatsiya
+          </Button>
+        </DialogTrigger>
+        <DialogContent class="sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle>Inventarizatsiya</DialogTitle>
+            <DialogDescription> Yangi mahsulot qo'shish </DialogDescription>
+          </DialogHeader>
+
+          <div class="grid gap-4 py-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Standard Size -->
+              <div class="space-y-1">
+                <Label>Standart size <span class="text-red-500">*</span></Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Tanlang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="size1">Size 1</SelectItem>
+                    <SelectItem value="size2">Size 2</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <!-- Height -->
+              <div class="space-y-1">
+                <Label>Boyi <span class="text-red-500">*</span></Label>
+                <Input type="text" />
+              </div>
+
+              <!-- Currency -->
+              <div class="space-y-1">
+                <Label>Valyuta <span class="text-red-500">*</span></Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Tanlang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="UZS">UZS</SelectItem>
+                    <SelectItem value="USD">USD</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <!-- Warehouse -->
+              <div class="space-y-1">
+                <Label>Ombor <span class="text-red-500">*</span></Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Tanlang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="ombor1">Ombor 1</SelectItem>
+                    <SelectItem value="ombor2">Ombor 2</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <!-- Category -->
+              <div class="space-y-1">
+                <Label>Kategoriya <span class="text-red-500">*</span></Label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Tanlang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="cat1">Kategoriya 1</SelectItem>
+                    <SelectItem value="cat2">Kategoriya 2</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <!-- Quantity -->
+              <div class="space-y-1">
+                <Label>Miqdor <span class="text-red-500">*</span></Label>
+                <Input type="number" />
+              </div>
+
+              <!-- Purchase Price -->
+              <div class="space-y-1">
+                <Label>Tan narxi</Label>
+                <Input type="text" />
+              </div>
+
+              <!-- Sale Price -->
+              <div class="space-y-1">
+                <Label>Sotuv narxi</Label>
+                <Input type="text" />
+              </div>
+            </div>
+
+            <!-- Comment -->
+            <div class="space-y-1">
+              <Label>Izoh</Label>
+              <Textarea class="min-h-[100px]" />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline">Yopish</Button>
+            <Button type="submit" variant="destructive">Saqlash</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+
+    <!-- Responsive Table -->
+    <div class="overflow-x-auto shadow-sm rounded-lg border">
+      <!-- Desktop Table -->
+      <table class="w-full hidden md:table bg-white text-sm">
+        <thead class="bg-gray-50">
+          <tr class="border-b">
+            <th class="py-3 px-4 text-left font-medium text-gray-500">№</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">
+              Omborxona
+            </th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">Tovar</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">Kod</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">Eni</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">Bo'yi</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">Soni</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">
+              Qoldiq
+            </th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">Jami</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">
+              Valyuta
+            </th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">Narx</th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">
+              Sotuv narxi
+            </th>
+            <th class="py-3 px-4 text-left font-medium text-gray-500">
+              Umumiy Narx
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in tableData"
+            :key="item.id"
+            class="border-b hover:bg-gray-50"
+          >
+            <td class="py-3 px-4">{{ index + 1 }}</td>
+            <td class="py-3 px-4">{{ item.omborxona }}</td>
+            <td class="py-3 px-4 font-medium">{{ item.tovar }}</td>
+            <td class="py-3 px-4">{{ item.code }}</td>
+            <td class="py-3 px-4">{{ item.eni }}</td>
+            <td class="py-3 px-4">{{ item.boyi }}</td>
+            <td class="py-3 px-4">{{ formatNumber(item.soni) }}</td>
+            <td class="py-3 px-4">{{ formatNumber(item.qoldiq) }}</td>
+            <td class="py-3 px-4">{{ formatNumber(item.jami) }}</td>
+            <td class="py-3 px-4">
+              <span
+                :class="currencyClass(item.valyuta)"
+                class="px-2 py-1 rounded-full text-xs"
+              >
+                {{ item.valyuta }}
+              </span>
+            </td>
+            <td class="py-3 px-4">
+              {{ formatCurrency(item.narx, item.valyuta) }}
+            </td>
+            <td class="py-3 px-4">
+              {{ formatCurrency(item.sotuvNarxi, item.valyuta) }}
+            </td>
+            <td class="py-3 px-4 font-semibold">
+              {{ formatCurrency(item.umumiyNarx, item.valyuta) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Mobile Cards -->
+      <div class="md:hidden space-y-4 p-4">
+        <div
+          v-for="(item, index) in tableData"
+          :key="item.id"
+          class="border rounded-lg p-4 hover:bg-gray-50"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-medium">{{ index + 1 }}. {{ item.tovar }}</h3>
+              <p class="text-sm text-gray-500">{{ item.omborxona }}</p>
+            </div>
+            <span
+              :class="currencyClass(item.valyuta)"
+              class="px-2 py-1 rounded-full text-xs"
             >
-              <td class="py-3 px-4">{{ index + 1 }}</td>
-              <td class="py-3 px-4">{{ item.omborxona }}</td>
-              <td class="py-3 px-4 font-medium text-gray-900">
-                {{ item.tovar }}
-              </td>
-              <td class="py-3 px-4">{{ item.code }}</td>
-              <td class="py-3 px-4">{{ item.eni }}</td>
-              <td class="py-3 px-4">{{ item.boyi }}</td>
-              <td class="py-3 px-4">{{ item.soni.toLocaleString("fr-FR") }}</td>
-              <td class="py-3 px-4">
-                {{ item.qoldiq.toLocaleString("fr-FR") }}
-              </td>
-              <td class="py-3 px-4">{{ item.jami.toLocaleString("fr-FR") }}</td>
-              <td class="py-3 px-4">
-                <span
-                  :class="
-                    item.valyuta === 'UZS'
-                      ? 'bg-blue-100 text-blue-800'
-                      : 'bg-green-100 text-green-800'
-                  "
-                  class="px-2 py-1 text-xs font-semibold rounded-full"
-                >
-                  {{ item.valyuta }}
-                </span>
-              </td>
-              <td class="py-3 px-4">
-                {{ item.narx.toLocaleString("fr-FR") }}
-                {{ item.valyuta === "UZS" ? "UZS" : "" }}
-              </td>
-              <td class="py-3 px-4">
-                {{ item.sotuvNarxi.toLocaleString("fr-FR") }}
-                {{ item.valyuta === "UZS" ? "UZS" : "" }}
-              </td>
-              <td class="py-3 px-4 font-bold text-gray-900">
-                {{ item.umumiyNarx.toLocaleString("fr-FR") }}
-                {{ item.valyuta === "UZS" ? "UZS" : "" }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              {{ item.valyuta }}
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mt-4 text-sm">
+            <div>
+              <p class="text-gray-500">Kod</p>
+              <p>{{ item.code }}</p>
+            </div>
+            <div>
+              <p class="text-gray-500">O'lcham</p>
+              <p>{{ item.eni }} × {{ item.boyi }}</p>
+            </div>
+            <div>
+              <p class="text-gray-500">Soni</p>
+              <p>{{ formatNumber(item.soni) }}</p>
+            </div>
+            <div>
+              <p class="text-gray-500">Qoldiq</p>
+              <p>{{ formatNumber(item.qoldiq) }}</p>
+            </div>
+            <div>
+              <p class="text-gray-500">Narx</p>
+              <p>{{ formatCurrency(item.narx, item.valyuta) }}</p>
+            </div>
+            <div>
+              <p class="text-gray-500">Sotuv narxi</p>
+              <p>{{ formatCurrency(item.sotuvNarxi, item.valyuta) }}</p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-4 border-t">
+            <p class="text-gray-500">Umumiy narx</p>
+            <p class="font-semibold">
+              {{ formatCurrency(item.umumiyNarx, item.valyuta) }}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { Button } from "@/components/ui/button";
 import { ref } from "vue";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-vue-next";
 import {
   Dialog,
   DialogContent,
@@ -260,19 +320,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-vue-next";
-import { Label } from "reka-ui";
 const tableData = ref([
   {
     id: 1,
@@ -470,6 +520,18 @@ const tableData = ref([
     umumiyNarx: 33000000,
   },
 ]);
-</script>
 
-<style scoped></style>
+const formatNumber = (num) => {
+  return num.toLocaleString("fr-FR");
+};
+
+const formatCurrency = (amount, currency) => {
+  return `${amount.toLocaleString("fr-FR")} ${currency}`;
+};
+
+const currencyClass = (currency) => {
+  return currency === "UZS"
+    ? "bg-blue-100 text-blue-800"
+    : "bg-green-100 text-green-800";
+};
+</script>

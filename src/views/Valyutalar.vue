@@ -12,7 +12,9 @@
       </div>
       <Button variant="destructive">+ O'lchov</Button>
     </div>
-    <div class="grid grid-cols-3 gap-4">
+    <div
+      class="grid grid-cols-3 gap-4 max-sm:flex max-sm:flex-col max-sm:w-full"
+    >
       <div
         v-for="(item, index) in cards"
         :key="index"

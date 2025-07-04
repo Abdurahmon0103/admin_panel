@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-100 border-r-2 border-black">
-    <Sidebar />
+    <Sidebar class="max-sm:hidden h-screen" />
     <div class="flex-1 flex flex-col overflow-hidden">
       <Header />
       <div class="flex-1 overflow-x-hidden overflow-y-auto bg-white p-6">

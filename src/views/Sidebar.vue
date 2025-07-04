@@ -280,6 +280,4 @@
   </div>
 </template>
 
-<script setup>
-// No script logic needed for this simple sidebar
-</script>
+<script setup></script>

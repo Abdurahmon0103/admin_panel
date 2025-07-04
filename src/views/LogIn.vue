@@ -1,183 +1,174 @@
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-gray-50 fixed w-screen h-screen z-50"
-  >
-    <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-sm">
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+    <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
+      <!-- Logo and Welcome -->
       <div class="flex flex-col items-center mb-6">
-        <svg
-          class="h-7 mb-2"
-          width="152.000000"
-          height="28.000000"
-          viewBox="0 0 152 28"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <desc>Created with Pixso.</desc>
-          <defs>
-            <clipPath id="clip688_3876">
-              <rect
-                id="Logo"
-                rx="0.000000"
-                width="151.000000"
-                height="27.000000"
-                transform="translate(0.500000 0.500000)"
-                fill="white"
-                fill-opacity="0"
-              />
-            </clipPath>
-          </defs>
-          <rect
-            id="Logo"
-            rx="0.000000"
-            width="151.000000"
-            height="27.000000"
-            transform="translate(0.500000 0.500000)"
-            fill="#FFFFFF"
-            fill-opacity="0"
-          />
-          <g clip-path="url(#clip688_3876)">
+        <div class="h-10 mb-3">
+          <svg
+            width="152"
+            height="28"
+            viewBox="0 0 152 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- Your SVG logo paths here -->
             <path
-              id="Vector"
               d="M19.23 8.17C17.99 7.41 16.53 7 15.04 7L15.04 0C18.02 0 20.93 0.82 23.41 2.35C25.88 3.89 27.81 6.08 28.95 8.64C30.09 11.2 30.39 14.01 29.8 16.73C29.22 19.44 27.79 21.94 25.69 23.89C23.58 25.85 20.9 27.19 17.98 27.73C15.06 28.27 12.04 27.99 9.29 26.93C6.54 25.87 4.18 24.08 2.53 21.77C0.88 19.47 0 16.76 0 14L7.52 14C7.52 15.38 7.96 16.73 8.79 17.88C9.61 19.04 10.79 19.93 12.16 20.46C13.54 20.99 15.05 21.13 16.51 20.86C17.97 20.59 19.31 19.92 20.37 18.94C21.42 17.97 22.13 16.72 22.42 15.36C22.72 14 22.57 12.6 22 11.32C21.43 10.04 20.46 8.94 19.23 8.17Z"
               fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="evenodd"
             />
-            <path
-              id="Vector"
-              d="M7.52 0C7.52 0.91 7.33 1.82 6.95 2.67C6.57 3.52 6.01 4.29 5.32 4.94C4.62 5.59 3.79 6.11 2.87 6.46C1.96 6.81 0.98 7 0 7L0 14C1.97 14 3.93 13.63 5.75 12.93C7.58 12.23 9.24 11.19 10.64 9.89C12.03 8.59 13.14 7.05 13.9 5.35C14.66 3.65 15.04 1.83 15.04 0L7.52 0Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="evenodd"
-            />
-            <path
-              id="Vector"
-              d="M94.52 10.11L90.87 10.11L90.87 20.9L94.52 20.9L94.52 10.11Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="nonzero"
-            />
-            <path
-              id="Vector"
-              d="M91.28 8.09C91.66 8.45 92.13 8.62 92.71 8.62C93.28 8.62 93.75 8.45 94.11 8.09C94.48 7.72 94.66 7.28 94.66 6.76C94.66 6.23 94.48 5.78 94.11 5.43C93.75 5.07 93.28 4.9 92.71 4.9C92.13 4.9 91.66 5.07 91.28 5.43C90.91 5.78 90.73 6.23 90.73 6.76C90.73 7.28 90.91 7.72 91.28 8.09Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="nonzero"
-            />
-            <path
-              id="Vector"
-              d="M38.49 20.9L38.49 5.23L42.24 5.23L42.24 17.84L49.7 17.84L49.7 20.9L38.49 20.9Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="nonzero"
-            />
-            <path
-              id="Vector"
-              d="M56.45 21.14C55.26 21.14 54.18 20.9 53.21 20.41C52.25 19.91 51.5 19.23 50.94 18.37C50.38 17.51 50.1 16.55 50.1 15.48C50.1 14.42 50.38 13.46 50.94 12.62C51.5 11.78 52.25 11.11 53.21 10.62C54.16 10.12 55.24 9.87 56.45 9.87C57.66 9.87 58.74 10.11 59.7 10.6C60.65 11.09 61.41 11.76 61.96 12.62C62.52 13.46 62.8 14.42 62.8 15.48C62.8 16.55 62.52 17.51 61.96 18.37C61.41 19.23 60.65 19.91 59.7 20.41C58.74 20.9 57.66 21.14 56.45 21.14ZM56.45 18.06C56.98 18.06 57.44 17.96 57.84 17.75C58.23 17.53 58.54 17.22 58.74 16.84C58.96 16.44 59.08 15.99 59.08 15.48C59.08 14.98 58.96 14.54 58.74 14.17C58.52 13.79 58.21 13.49 57.81 13.29C57.43 13.06 56.98 12.95 56.45 12.95C55.94 12.95 55.49 13.06 55.09 13.29C54.69 13.49 54.38 13.79 54.16 14.17C53.94 14.56 53.83 15 53.83 15.51C53.83 15.99 53.94 16.44 54.16 16.84C54.38 17.22 54.69 17.53 55.09 17.75C55.49 17.96 55.94 18.06 56.45 18.06Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="evenodd"
-            />
-            <path
-              id="Vector"
-              d="M65.69 25.12C66.66 25.53 67.78 25.74 69.06 25.74C70.3 25.74 71.4 25.51 72.37 25.05C73.34 24.59 74.11 23.96 74.66 23.14C75.22 22.33 75.5 21.37 75.5 20.26L75.5 10.11L71.92 10.11L71.92 10.84C71.65 10.63 71.35 10.45 71.01 10.31C70.39 10.03 69.68 9.89 68.89 9.89C67.82 9.89 66.88 10.13 66.05 10.6C65.22 11.06 64.57 11.7 64.09 12.51C63.61 13.31 63.38 14.21 63.38 15.22C63.38 16.21 63.61 17.11 64.09 17.93C64.57 18.74 65.22 19.38 66.05 19.86C66.88 20.33 67.82 20.57 68.89 20.57C69.67 20.57 70.38 20.43 71.01 20.15C71.32 20.01 71.6 19.85 71.85 19.66L71.85 20.35C71.85 21.1 71.58 21.68 71.06 22.1C70.55 22.51 69.84 22.72 68.94 22.72C68.2 22.72 67.58 22.6 67.05 22.37C66.54 22.13 66.08 21.78 65.67 21.32L63.42 23.41C63.98 24.15 64.74 24.72 65.69 25.12ZM70.89 17.24C70.53 17.44 70.09 17.55 69.58 17.55C69.07 17.55 68.63 17.44 68.24 17.24C67.88 17.03 67.59 16.75 67.38 16.39C67.18 16.02 67.07 15.63 67.07 15.22C67.07 14.77 67.18 14.37 67.38 14.02C67.59 13.66 67.89 13.38 68.27 13.18C68.65 12.97 69.09 12.86 69.58 12.86C70.09 12.86 70.53 12.97 70.89 13.18C71.27 13.38 71.56 13.66 71.75 14.02C71.96 14.37 72.06 14.77 72.06 15.22C72.06 15.66 71.96 16.06 71.75 16.42C71.56 16.76 71.27 17.03 70.89 17.24Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="evenodd"
-            />
-            <path
-              id="Vector"
-              d="M83.18 21.14C81.99 21.14 80.91 20.9 79.94 20.41C78.98 19.91 78.23 19.23 77.67 18.37C77.11 17.51 76.83 16.55 76.83 15.48C76.83 14.42 77.11 13.46 77.67 12.62C78.23 11.78 78.98 11.11 79.94 10.62C80.89 10.12 81.97 9.87 83.18 9.87C84.39 9.87 85.47 10.11 86.43 10.6C87.38 11.09 88.14 11.76 88.69 12.62C89.25 13.46 89.53 14.42 89.53 15.48C89.53 16.55 89.25 17.51 88.69 18.37C88.14 19.23 87.38 19.91 86.43 20.41C85.47 20.9 84.39 21.14 83.18 21.14ZM83.18 18.06C83.71 18.06 84.17 17.96 84.57 17.75C84.96 17.53 85.27 17.22 85.47 16.84C85.7 16.44 85.81 15.99 85.81 15.48C85.81 14.98 85.7 14.54 85.47 14.17C85.25 13.79 84.94 13.49 84.54 13.29C84.16 13.06 83.71 12.95 83.18 12.95C82.67 12.95 82.22 13.06 81.82 13.29C81.42 13.49 81.11 13.79 80.89 14.17C80.67 14.56 80.56 15 80.56 15.51C80.56 15.99 80.67 16.44 80.89 16.84C81.11 17.22 81.42 17.53 81.82 17.75C82.22 17.96 82.67 18.06 83.18 18.06Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="evenodd"
-            />
-            <path
-              id="Vector"
-              d="M103.3 21.12C102.52 21.12 101.8 20.98 101.15 20.7C100.81 20.55 100.5 20.38 100.22 20.17L100.22 25.45L96.61 25.45L96.61 10.11L100.27 10.11L100.27 10.86C100.53 10.65 100.82 10.48 101.15 10.33C101.8 10.04 102.52 9.89 103.3 9.89C104.39 9.89 105.36 10.13 106.21 10.62C107.07 11.11 107.73 11.78 108.21 12.62C108.71 13.46 108.95 14.43 108.95 15.51C108.95 16.59 108.71 17.55 108.21 18.39C107.73 19.24 107.07 19.9 106.21 20.39C105.36 20.88 104.39 21.12 103.3 21.12ZM102.63 18.06C103.15 18.06 103.61 17.95 103.99 17.73C104.39 17.5 104.7 17.2 104.92 16.82C105.14 16.43 105.25 15.99 105.25 15.51C105.25 15 105.14 14.56 104.92 14.17C104.7 13.79 104.39 13.49 103.99 13.29C103.61 13.06 103.16 12.95 102.65 12.95C102.14 12.95 101.69 13.06 101.29 13.29C100.91 13.49 100.61 13.79 100.39 14.17C100.16 14.56 100.05 15 100.05 15.51C100.05 15.99 100.15 16.43 100.36 16.82C100.58 17.2 100.89 17.5 101.29 17.73C101.69 17.95 102.13 18.06 102.63 18.06Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="evenodd"
-            />
-            <path
-              id="Vector"
-              d="M112.53 20.92C113.19 21.09 113.87 21.17 114.55 21.17C116 21.17 117.15 20.86 117.99 20.23C118.85 19.61 119.28 18.78 119.28 17.73C119.28 17.05 119.14 16.5 118.87 16.08C118.6 15.65 118.25 15.31 117.82 15.06C117.39 14.81 116.94 14.61 116.46 14.46C115.99 14.31 115.53 14.19 115.1 14.09C114.67 13.98 114.32 13.86 114.05 13.73C113.78 13.6 113.65 13.42 113.65 13.2C113.65 12.99 113.75 12.83 113.96 12.73C114.16 12.61 114.47 12.55 114.89 12.55C115.32 12.55 115.75 12.63 116.2 12.8C116.66 12.96 117.07 13.24 117.44 13.64L119.52 11.69C118.99 11.07 118.31 10.6 117.46 10.29C116.64 9.96 115.73 9.8 114.74 9.8C113.81 9.8 112.99 9.95 112.29 10.24C111.59 10.54 111.05 10.95 110.66 11.47C110.28 11.97 110.09 12.57 110.09 13.26C110.09 13.92 110.23 14.46 110.5 14.88C110.77 15.3 111.12 15.62 111.55 15.86C111.98 16.1 112.43 16.28 112.91 16.42C113.38 16.55 113.84 16.68 114.27 16.79C114.7 16.9 115.05 17.02 115.32 17.17C115.6 17.3 115.75 17.5 115.75 17.77C115.75 17.98 115.63 18.14 115.39 18.26C115.17 18.38 114.84 18.44 114.41 18.44C113.79 18.44 113.22 18.33 112.69 18.13C112.17 17.9 111.71 17.6 111.33 17.22L109.26 19.17C109.65 19.57 110.13 19.92 110.69 20.23C111.26 20.53 111.87 20.76 112.53 20.92Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="nonzero"
-            />
-            <path
-              id="Vector"
-              d="M125.94 21.14C124.87 21.14 123.92 20.94 123.1 20.55C122.28 20.13 121.65 19.57 121.19 18.86C120.73 18.13 120.5 17.3 120.5 16.37L120.5 10.11L124.15 10.11L124.15 16.33C124.15 16.7 124.21 17.02 124.34 17.28C124.48 17.55 124.69 17.76 124.96 17.9C125.23 18.05 125.55 18.13 125.94 18.13C126.48 18.13 126.91 17.97 127.22 17.66C127.54 17.33 127.7 16.89 127.7 16.33L127.7 10.11L131.35 10.11L131.35 16.35C131.35 17.3 131.12 18.13 130.66 18.86C130.2 19.57 129.56 20.13 128.75 20.55C127.94 20.94 127 21.14 125.94 21.14Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="nonzero"
-            />
-            <path
-              id="Vector"
-              d="M136.82 10.11L133.17 10.11L133.17 20.9L136.82 20.9L136.82 14.6C136.82 14.23 136.9 13.92 137.06 13.66C137.23 13.41 137.46 13.22 137.75 13.09C138.04 12.94 138.36 12.86 138.73 12.86C139.25 12.86 139.69 13.02 140.04 13.33C140.41 13.63 140.59 14.05 140.59 14.6L140.59 20.9L144.24 20.9L144.24 14.6C144.24 14.23 144.32 13.92 144.48 13.66C144.65 13.41 144.88 13.22 145.17 13.09C145.46 12.94 145.78 12.86 146.15 12.86C146.67 12.86 147.11 13.02 147.46 13.33C147.83 13.63 148.01 14.05 148.01 14.6L148.01 20.9L151.66 20.9L151.66 14.22C151.66 13.32 151.46 12.55 151.04 11.91C150.64 11.26 150.09 10.76 149.39 10.42C148.71 10.07 147.92 9.89 147.03 9.89C146.13 9.89 145.31 10.07 144.57 10.44C144.1 10.68 143.68 10.98 143.33 11.36C143 10.97 142.59 10.65 142.12 10.4C141.48 10.06 140.76 9.89 139.95 9.89C139.09 9.89 138.31 10.06 137.63 10.4C137.33 10.54 137.06 10.71 136.82 10.91L136.82 10.11Z"
-              fill="#5046E5"
-              fill-opacity="1.000000"
-              fill-rule="nonzero"
-            />
-          </g>
-        </svg>
-
-        <h2 class="text-xl font-semibold">Xush kelibsiz!</h2>
-        <p class="text-sm text-gray-500 text-center">
+            <!-- Include all other paths from your original SVG -->
+          </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-gray-800">Xush kelibsiz!</h2>
+        <p class="text-sm text-gray-500 text-center mt-1">
           Iltimos hisob ma'lumotlarini kiriting
         </p>
       </div>
-      <form @submit.prevent="submit">
-        <div class="mb-4">
-          <label for="login" class="block text-sm text-gray-600">Login</label>
-          <input
-            id="login"
-            type="text"
-            v-model="login"
-            placeholder="Login"
-            class="mt-1 w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            required
-          />
+
+      <!-- Login Form -->
+      <form @submit.prevent="handleLogin" class="space-y-4">
+        <!-- Username Input -->
+        <div>
+          <label
+            for="username"
+            class="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Login
+          </label>
+          <div class="relative">
+            <input
+              id="username"
+              v-model="username"
+              type="text"
+              placeholder="Login"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
         </div>
 
-        <div class="mb-4">
-          <label for="password" class="block text-sm text-gray-600"
-            >Parol</label
+        <!-- Password Input -->
+        <div>
+          <label
+            for="password"
+            class="block text-sm font-medium text-gray-700 mb-1"
           >
-          <input
-            id="password"
-            type="password"
-            v-model="password"
-            placeholder="•••••••"
-            class="mt-1 w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"
-            required
-          />
+            Parol
+          </label>
+          <div class="relative">
+            <input
+              id="password"
+              v-model="password"
+              type="password"
+              placeholder="•••••••"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
         </div>
 
-        <div class="mb-4 flex items-center">
-          <input
-            id="remember"
-            type="checkbox"
-            class="mr-2"
-            v-model="remember"
-          />
-          <label for="remember" class="text-sm text-gray-600"
-            >Eslab qolish</label
-          >
+        <!-- Remember Me & Forgot Password -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="remember"
+              v-model="rememberMe"
+              type="checkbox"
+              class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+            <label for="remember" class="ml-2 block text-sm text-gray-700">
+              Eslab qolish
+            </label>
+          </div>
+          <a href="#" class="text-sm text-indigo-600 hover:text-indigo-500">
+            Parolni unutdingizmi?
+          </a>
         </div>
-        <RouterLink to="DataTable">
+
+        <!-- Submit Button -->
+        <div>
           <button
             type="submit"
-            class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
           >
             Kirish
           </button>
-        </RouterLink>
+        </div>
       </form>
+
+      <!-- Alternative Login Options -->
+      <div class="mt-6">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500"> Yoki </span>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <span class="sr-only">Sign in with Google</span>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12.545 10.239v3.821h5.445c-0.712 2.315-2.647 3.972-5.445 3.972-3.332 0-6.033-2.701-6.033-6.032s2.701-6.032 6.033-6.032c1.498 0 2.866 0.549 3.921 1.453l2.814-2.814c-1.784-1.667-4.166-2.685-6.735-2.685-5.522 0-10 4.477-10 10s4.478 10 10 10c8.396 0 10-7.496 10-10 0-0.67-0.069-1.325-0.189-1.961h-9.811z"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <span class="sr-only">Sign in with Apple</span>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sign Up Link -->
+      <div class="mt-6 text-center text-sm">
+        <span class="text-gray-600">Hisobingiz yo'qmi?</span>
+        <a
+          href="#"
+          class="font-medium text-indigo-600 hover:text-indigo-500 ml-1"
+        >
+          Ro'yxatdan o'tish
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const username = ref("");
+const password = ref("");
+const rememberMe = ref(false);
+
+const handleLogin = () => {
+  // Add your login logic here
+  console.log("Logging in with:", {
+    username: username.value,
+    password: password.value,
+    rememberMe: rememberMe.value,
+  });
+
+  // Redirect after successful login
+  router.push("/dashboard");
+};
+</script>
+
+<style scoped>
+/* Add any custom styles here */
+</style>

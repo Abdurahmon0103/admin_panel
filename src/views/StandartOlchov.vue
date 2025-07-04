@@ -11,8 +11,10 @@
       </div>
       <Button variant="destructive" class="">+ O'lchov</Button>
     </div>
-    <div class="grid grid-cols-4 grid-rows-3 gap-4">
-      <div v-for="n in 12" :key="12" class="">
+    <div
+      class="grid grid-cols-4 grid-rows-3 gap-4 max-sm:max-w-md max-sm:flex max-sm:flex-col"
+    >
+      <div v-for="n in 12" :key="12" class="max-sm:w-full">
         <a
           class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
         >
