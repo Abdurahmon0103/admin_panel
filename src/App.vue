@@ -1,11 +1,11 @@
 <template>
-  <div class="flex h-screen bg-gray-100 border-r-2 border-black">
-    <Sidebar class="max-sm:hidden h-screen" />
-    <div class="flex-1 flex flex-col overflow-hidden">
-      <Header />
-      <div class="flex-1 overflow-x-hidden overflow-y-auto bg-white p-6">
+  <div class="min-h-screen flex flex-col bg-gray-100">
+    <Header />
+    <div class="flex flex-1 overflow-hidden">
+      <Sidebar class="max-sm:hidden" />
+      <main class="flex-1 overflow-y-auto p-4">
         <RouterView />
-      </div>
+      </main>
     </div>
   </div>
 </template>

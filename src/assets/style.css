@@ -121,3 +121,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+#app {
+  min-height: 100vh;
+}
+html,
+body,
+#app {
+  min-height: 100vh;
+}

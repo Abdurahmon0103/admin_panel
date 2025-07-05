@@ -1,6 +1,5 @@
 <template>
   <div class="bg-white p-4 md:p-6 rounded-lg shadow-md flex flex-col gap-2">
-    <!-- Filter Row - Stacked on mobile -->
     <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
       <div class="relative w-full">
         <Select>
@@ -232,8 +231,6 @@
             </tr>
           </tbody>
         </table>
-
-        <!-- Mobile Cards - Visible only on mobile -->
         <div class="space-y-4 md:hidden">
           <div
             v-for="(row, index) in tableData"
@@ -302,13 +299,11 @@
         </div>
       </div>
     </div>
-
-    <!-- Pagination -->
     <Pagination
       v-slot="{ page }"
       :items-per-page="10"
       :total="30"
-      :default-page="2"
+      :default-page="1"
     >
       <PaginationContent v-slot="{ items }">
         <PaginationPrevious />
@@ -524,6 +519,4 @@ const tableData = ref([
 ]);
 </script>
 
-<style scoped>
-/* Add any custom styles here if needed */
-</style>
+<style scoped></style>
