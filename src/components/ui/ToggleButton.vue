@@ -11,6 +11,6 @@ const isOn = ref(false);
     :variant="isOn ? 'default' : 'outline'"
     class="w-32"
   >
-    {{ isOn ? "Enabled" : "Disabled" }}
+    {{ isOn ? "Dark mode:   on" : "Dark mode:   off" }}
   </Button>
 </template>

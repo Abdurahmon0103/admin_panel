@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Search va Button -->
     <div class="w-full flex justify-between mb-4">
       <div class="relative w-full max-w-sm items-center">
         <Input id="search" type="text" placeholder="Search..." class="pl-10" />
