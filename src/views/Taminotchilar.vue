@@ -36,6 +36,31 @@
 import { Search } from "lucide-vue-next";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+async function fetchFilteredData() {
+  const token = localStorage.getItem("token");
+  const data = {
+    warehouse: filter_warehouse.value,
+    date: value.value,
+    contributor: filter_contributor.value,
+    user: filter_user.value,
+    client: filter_client.value,
+    width: filter_width.value,
+    height: filter_height.value,
+  };
+  console.log(data);
+  try {
+    const response = await axios.post("/report/getfiltered", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    window.location.reload();
+    // console.log('Data fetched successfully:', response.data)
+  } catch (error) {
+    console.log(error);
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

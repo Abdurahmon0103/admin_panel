@@ -138,7 +138,7 @@
 
     <!-- Action Buttons - Stacked on mobile -->
     <div class="flex flex-col sm:flex-row gap-4 mb-6">
-      <div class="flex flex-1 gap-4">
+      <div class="flex flex-1 gap-4 max-sm:flex-col">
         <input
           type="text"
           placeholder="Eni"

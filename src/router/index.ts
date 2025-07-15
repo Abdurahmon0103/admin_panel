@@ -65,5 +65,12 @@ const router = createRouter({
     },
   ],
 });
-
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem("token");
+  if (to.name !== "LogIn" && !token) {
+    next({ name: "LogIn" });
+  } else if (token && to.name == "LogIn") {
+    next({ name: "Hisobotlar" });
+  } else next();
+});
 export default router;

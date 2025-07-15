@@ -379,7 +379,7 @@
         </div>
         <RouterLink to="LogIn">
           <Button
-            class="max-sm:absolute max-sm:bottom-4 max-sm:right-5 flex gap-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-red-500 transition-all duration-150 hover:text-white cursor-pointer active:bg-red-700 w-full text-red-500"
+            class="max-sm:absolute max-sm:bottom-4 max-sm:right-5 flex gap-2 px-4 py-2 bg-gray-200 rounded-md hover:bg-red-500 transition-all duration-150 hover:text-white cursor-pointer active:bg-red-700 w-full text-red-500 max-sm:w-6/7"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

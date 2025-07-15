@@ -1,8 +1,10 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
     <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
+      <!-- Header -->
       <div class="flex flex-col items-center mb-6">
         <div class="h-10 mb-3 flex items-center justify-center gap-2">
+          <!-- Logo -->
           <svg
             width="32"
             height="32"
@@ -21,7 +23,9 @@
           Iltimos hisob ma'lumotlarini kiriting
         </p>
       </div>
-      <div v-if="showError">
+
+      <!-- Xatolik chiqishi -->
+      <div v-if="showError" class="mb-3">
         <Alert variant="destructive">
           <AlertCircle class="w-4 h-4" />
           <AlertTitle>Xatolik</AlertTitle>
@@ -30,6 +34,8 @@
           </AlertDescription>
         </Alert>
       </div>
+
+      <!-- Form -->
       <form @submit.prevent="login" class="space-y-4">
         <div>
           <label
@@ -89,35 +95,55 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import { useAuthStore } from "@/stores/auth";
 import { AlertCircle } from "lucide-vue-next";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+// Form data
 const userLogin = ref("");
 const userPassword = ref("");
 const rememberMe = ref(false);
+
+// State
 const isLoading = ref(false);
 const showError = ref(false);
+
+// Store va router
+const auth = useAuthStore();
 const router = useRouter();
+
+// Kirish funksiyasi
 async function login() {
   isLoading.value = true;
   showError.value = false;
+
   const payload = {
     userLogin: userLogin.value,
     userPassword: userPassword.value,
   };
+
   try {
     const response = await axios.post("/auth/login", payload);
-    if (response.data.accessToken) {
-      localStorage.setItem("token", response.data.accessToken);
+    console.log("✅ Javob:", response);
+
+    const token = response.data.accessToken; // bu nomni logdan aniqlang
+
+    if (token) {
+      auth.login(token);
       router.push("/");
     } else {
       showError.value = true;
     }
   } catch (error) {
+    console.error("❌ Login xatolik:", error);
     showError.value = true;
+  } finally {
+    isLoading.value = false;
   }
 }
 </script>
