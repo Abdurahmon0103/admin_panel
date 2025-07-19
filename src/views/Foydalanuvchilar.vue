@@ -1,6 +1,6 @@
+```vue
 <template>
   <div class="w-full space-y-4">
-    <!-- Search and Add User - Stacked on mobile -->
     <div class="w-full flex flex-col sm:flex-row gap-4 justify-between">
       <div class="relative w-full max-w-sm items-center">
         <Input
@@ -19,14 +19,9 @@
         >+ Foydalanuvchi</Button
       >
     </div>
-
-    <!-- Responsive Table Container -->
     <div class="p-2 sm:p-4">
-      <div class="overflow-x-auto bg-white rounded-xl shadow">
-        <!-- Desktop Table - Hidden on mobile -->
-        <table
-          class="min-w-full text-sm text-left text-gray-700 hidden sm:table"
-        >
+      <div class="overflow-x-auto bg-white rounded-xl shadow w-[83vw]">
+        <table class="w-[83vw] text-sm text-left text-gray-700 hidden sm:table">
           <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
             <tr>
               <th class="px-4 py-3">№</th>
@@ -54,8 +49,6 @@
             </tr>
           </tbody>
         </table>
-
-        <!-- Mobile Cards - Visible only on mobile -->
         <div class="space-y-3 sm:hidden p-3">
           <div
             v-for="(item, index) in tableData"
@@ -98,20 +91,43 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { Search, Phone } from "lucide-vue-next";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+<script setup lang="js">
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { Search, Phone } from 'lucide-vue-next';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+const token = localStorage.getItem('token');
 
-const tableData = Array.from({ length: 13 }, () => ({
-  fullName: "Odilxon Tursunov",
-  phone1: "+998 91 088 29 07",
-  phone2: "+998 91 088 29 07",
-  createdAt: "21.02.2023",
-  note: "Законом предусмотрено предоставление права на бесплатное пользование городским транспортом...",
-}));
+const tableData = ref([]);
+
+const fetchUsers = async () => {
+  try {
+    const response = await axios.get('/user/getall', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const users = Array.isArray(response.data) ? response.data : response.data.data;
+
+    tableData.value = users.map((user) => ({
+      fullName: `${user.userFirstName} ${user.userLastName || ""}`.trim(),
+      phone1: user.userNomer,
+      phone2: null,
+      createdAt: "—",
+      note: user.userDescription || "—",
+    }));
+  } catch (error) {
+    console.error("Foydalanuvchilarni olishda xatolik:", error);
+  }
+};
+
+
+onMounted(() => {
+  fetchUsers();
+});
 </script>
 
-<style scoped>
-/* Custom styles if needed */
-</style>
+<style scoped></style>
+```

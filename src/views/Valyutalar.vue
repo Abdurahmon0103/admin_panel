@@ -1,58 +1,109 @@
 <template>
-  <div>
-    <div class="w-full flex justify-between mb-4">
-      <div class="relative w-full max-w-sm items-center">
-        <Input id="search" type="text" placeholder="Search..." class="pl-10" />
+  <div class="flex flex-col gap-4 p-4 bg-gray-50 min-h-screen">
+    <div class="w-full flex justify-between items-center">
+      <div class="relative w-full max-w-sm">
+        <Input id="search" type="text" placeholder="Qidiruv..." class="pl-10" />
         <span
           class="absolute start-0 inset-y-0 flex items-center justify-center px-2"
         >
-          <Search class="size-6 text-muted-foreground" />
+          <Search class="size-5 text-muted-foreground" />
         </span>
       </div>
       <Button variant="destructive">+ O'lchov</Button>
     </div>
+
     <div
-      class="grid grid-cols-3 gap-4 max-sm:flex max-sm:flex-col max-sm:w-full"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
+      <div v-if="loading" class="col-span-full text-center text-gray-500 py-10">
+        Yuklanmoqda...
+      </div>
+
       <div
-        v-for="(item, index) in cards"
-        :key="index"
-        class="font-bold text-md mb-4 border border-gray-300 shadow-xl rounded-xl flex py-4 gap-2 px-3"
+        v-else
+        v-for="item in sizes"
+        :key="item.sizeId"
+        class="flex flex-col justify-between w-full h-full p-4 bg-white rounded-lg shadow transition-shadow hover:shadow-md"
       >
         <div>
-          <h3>{{ item.title }}</h3>
+          <div class="flex justify-between items-start mb-2">
+            <div class="flex items-center gap-3">
+              <h3 class="text-xl font-bold text-gray-900">
+                {{ parseFloat(item.currencyName) || "ef" }}
+              </h3>
+              <span
+                v-if="item.currencyAmount"
+                class="text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full"
+              >
+                # {{ item.currencyAmount }}
+              </span>
+            </div>
+            <button class="text-gray-400 hover:text-gray-600">
+              <MoreVertical class="h-5 w-5" />
+            </button>
+          </div>
 
-          <p class="bg-blue-50 rounded-full">{{ item.name }}</p>
+          <p class="text-sm text-gray-500">
+            {{
+              item.currencyDescription
+                ? item.currencyDescription.trim()
+                : "Narx kiritilmagan"
+            }}
+          </p>
         </div>
-        <p>{{ item.value }}</p>
+      </div>
+
+      <div v-if="error" class="col-span-full">
+        <Alert variant="destructive">
+          <AlertCircle class="h-4 w-4" />
+          <AlertTitle>{{ error }}</AlertTitle>
+        </Alert>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { Search } from "lucide-vue-next";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import axios from "axios";
+
+import { Alert, AlertTitle } from "@/components/ui/alert";
+import { Search, AlertCircle, MoreVertical } from "lucide-vue-next";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const cards = ref([
-  {
-    title: "AQSH Do'llari",
-    name: "USD",
-    value: "1 2611 so'm",
-  },
-  {
-    title: "Rossiya Rubli",
-    name: "RUB",
-    value: "133,82 so'm",
-  },
-  {
-    title: "Uzbekistan So'mi",
-    name: "UZS",
-    value: "1 so'm",
-  },
-]);
+const router = useRouter();
+const loading = ref(false);
+const error = ref(null);
+const sizes = ref([]);
+
+const fetchData = async () => {
+  loading.value = true;
+  error.value = null;
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get("/currency/getall?limit=100", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    sizes.value = Array.isArray(response.data)
+      ? response.data
+      : response.data.data;
+  } catch (err) {
+    if (err.response?.status === 401) {
+      router.push("/LogIn");
+    }
+    error.value =
+      err.response?.data?.message ||
+      "Ma'lumotlarni yuklashda xatolik yuz berdi.";
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(fetchData);
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

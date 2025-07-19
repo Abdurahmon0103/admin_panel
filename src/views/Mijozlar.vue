@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-4 p-4">
-    <!-- Search and Add Client - Stacked on mobile -->
+    <!-- Search va Qo‘shish tugmasi -->
     <div
       class="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center"
     >
@@ -22,53 +22,41 @@
       </Button>
     </div>
 
-    <!-- Responsive Table -->
+    <!-- Jadval -->
     <div class="bg-white rounded-lg shadow overflow-hidden">
-      <!-- Desktop Table -->
+      <!-- Desktop jadval -->
       <table class="hidden sm:table min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
           <tr>
             <th
-              scope="col"
-              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase"
             >
               №
             </th>
             <th
-              scope="col"
-              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase"
             >
               Familiya va ismi
             </th>
             <th
-              scope="col"
-              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase"
             >
               Telefon raqam 1
             </th>
             <th
-              scope="col"
-              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase"
             >
               Telefon raqam 2
             </th>
             <th
-              scope="col"
-              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase"
             >
               Yaratilgan vaqti
             </th>
             <th
-              scope="col"
-              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase"
             >
               Izoh
-            </th>
-            <th
-              scope="col"
-              class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Harakatlar
             </th>
           </tr>
         </thead>
@@ -78,33 +66,23 @@
             :key="index"
             class="hover:bg-gray-50"
           >
-            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-              {{ index + 1 }}
-            </td>
-            <td
-              class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900"
-            >
+            <td class="px-4 py-3 text-sm">{{ index + 1 }}</td>
+            <td class="px-4 py-3 text-sm font-medium text-gray-900">
               {{ item.fullName }}
             </td>
-            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-              {{ item.phone1 }}
-            </td>
-            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
-              {{ item.phone2 || "—" }}
-            </td>
-            <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+            <td class="px-4 py-3 text-sm text-gray-500">{{ item.phone1 }}</td>
+            <td class="px-4 py-3 text-sm text-gray-500">{{ item.phone2 }}</td>
+            <td class="px-4 py-3 text-sm text-gray-500">
               {{ item.createdAt }}
             </td>
             <td class="px-4 py-3 text-sm text-gray-500 max-w-xs truncate">
               {{ item.note }}
             </td>
-            <td
-              class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium"
-            >
+            <td class="px-4 py-3 text-sm text-right">
               <DropdownMenu>
-                <DropdownMenuTrigger class="text-gray-500 hover:text-gray-700">
-                  ⋮
-                </DropdownMenuTrigger>
+                <DropdownMenuTrigger class="text-gray-500 hover:text-gray-700"
+                  >⋮</DropdownMenuTrigger
+                >
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem>Tahrirlash</DropdownMenuItem>
                   <DropdownMenuItem>Ko'rish</DropdownMenuItem>
@@ -119,7 +97,7 @@
         </tbody>
       </table>
 
-      <!-- Mobile Cards -->
+      <!-- Mobil kartalar -->
       <div class="sm:hidden space-y-4 p-4">
         <div
           v-for="(item, index) in tableData"
@@ -134,7 +112,7 @@
                 <span>{{ item.phone1 }}</span>
               </div>
               <div
-                v-if="item.phone2"
+                v-if="item.phone2 && item.phone2 !== '—'"
                 class="flex items-center gap-2 mt-1 text-sm text-gray-500"
               >
                 <Phone class="size-4" />
@@ -142,9 +120,9 @@
               </div>
             </div>
             <DropdownMenu>
-              <DropdownMenuTrigger class="text-gray-500 hover:text-gray-700">
-                ⋮
-              </DropdownMenuTrigger>
+              <DropdownMenuTrigger class="text-gray-500 hover:text-gray-700"
+                >⋮</DropdownMenuTrigger
+              >
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>Tahrirlash</DropdownMenuItem>
                 <DropdownMenuItem>Ko'rish</DropdownMenuItem>
@@ -173,6 +151,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
+import axios from "axios";
 import { Search, Phone } from "lucide-vue-next";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -184,15 +164,49 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const tableData = Array.from({ length: 13 }, () => ({
-  fullName: "Odilxon Tursunov",
-  phone1: "+998 91 088 29 07",
-  phone2: "+998 91 088 29 07",
-  createdAt: "21.02.2023",
-  note: "Законом предусмотрено предоставление права на бесплатное пользование городским транспортом...",
-}));
+// Tokenni localStorage'dan olish
+const token = localStorage.getItem("token");
+
+// Jadval ma'lumotlari
+const tableData = ref<
+  {
+    fullName: string;
+    phone1: string;
+    phone2: string;
+    createdAt: string;
+    note: string;
+  }[]
+>([]);
+
+// Ma'lumotlarni yuklash
+const fetchUsers = async () => {
+  try {
+    const response = await axios.get("/user/getall", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const users = Array.isArray(response.data)
+      ? response.data
+      : response.data.data;
+
+    tableData.value = users.map((user) => ({
+      fullName: `${user.userFirstName} ${user.userLastName || ""}`.trim(),
+      phone1: user.userNomer,
+      phone2: user.userEmail || "—",
+      createdAt: user.createdAt?.slice(0, 10) || "—",
+      note: user.userDescription || "—",
+    }));
+  } catch (error) {
+    console.error("Foydalanuvchilarni olishda xatolik:", error);
+  }
+};
+
+onMounted(() => {
+  fetchUsers();
+});
 </script>
 
-<style scoped>
-/* Custom styles if needed */
-</style>
+<style scoped></style>
+x``

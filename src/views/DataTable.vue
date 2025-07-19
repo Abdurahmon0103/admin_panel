@@ -194,37 +194,37 @@
           </thead>
           <tbody>
             <tr
-              v-for="(row, index) in tableData"
+              v-for="(item, index) in tableData"
               :key="index"
               class="hover:bg-gray-50 border-b border-gray-200"
             >
-              <td class="py-3 px-4">{{ row.ombor }}</td>
-              <td class="py-3 px-4">{{ row.kodim }}</td>
-              <td class="py-3 px-4">{{ row.taminotchi }}</td>
-              <td class="py-3 px-4">{{ row.haridor }}</td>
-              <td class="py-3 px-4">{{ row.tovar }}</td>
-              <td class="py-3 px-4">{{ row.eni }}</td>
-              <td class="py-3 px-4">{{ row.boyi }}</td>
+              <td class="py-3 px-4">{{ item.warehouse_warehouseName }}</td>
+              <td class="py-3 px-4">{{ item.kodim || "-" }}</td>
+              <td class="py-3 px-4">{{ item.taminotchi || "-" }}</td>
+              <td class="py-3 px-4">{{ item.haridor || "-" }}</td>
+              <td class="py-3 px-4">{{ item.tovar }}</td>
+              <td class="py-3 px-4">{{ item.eni }}</td>
+              <td class="py-3 px-4">{{ item.boyi }}</td>
               <td class="py-3 px-4 flex items-center">
                 <span
                   :class="{
-                    'text-green-500': row.miqdor_change > 0,
-                    'text-red-500': row.miqdor_change < 0,
+                    'text-green-500': item.miqdor_change > 0,
+                    'text-red-500': item.miqdor_change < 0,
                   }"
                 >
                   {{
-                    row.miqdor_change > 0
+                    item.miqdor_change > 0
                       ? "▲"
-                      : row.miqdor_change < 0
+                      : item.miqdor_change < 0
                       ? "▼"
                       : ""
                   }}
                 </span>
-                {{ row.miqdor }}
+                {{ item.miqdor || item.soni }}
               </td>
-              <td class="py-3 px-4">{{ row.nara }}</td>
-              <td class="py-3 px-4">{{ row.umumiy_nara }}</td>
-              <td class="py-3 px-4">{{ row.sana }}</td>
+              <td class="py-3 px-4">{{ item.narx }}</td>
+              <td class="py-3 px-4">{{ item.umumiyNarx }}</td>
+              <td class="py-3 px-4">{{ item.sana || "-" }}</td>
               <td class="py-3 px-4">
                 <button class="text-gray-500 hover:text-gray-700">⋮</button>
               </td>
@@ -233,14 +233,16 @@
         </table>
         <div class="space-y-4 md:hidden">
           <div
-            v-for="(row, index) in tableData"
+            v-for="(item, index) in tableData"
             :key="index"
             class="p-4 border border-gray-200 rounded-lg"
           >
             <div class="flex justify-between items-start">
               <div>
-                <h3 class="font-medium text-gray-900">{{ row.tovar }}</h3>
-                <p class="text-sm text-gray-500">{{ row.ombor }}</p>
+                <h3 class="font-medium text-gray-900">{{ item.tovar }}</h3>
+                <p class="text-sm text-gray-500">
+                  {{ item.warehouse_warehouseName }}
+                </p>
               </div>
               <button class="text-gray-500 hover:text-gray-700">⋮</button>
             </div>
@@ -248,51 +250,51 @@
             <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p class="text-gray-500">Xodim</p>
-                <p>{{ row.kodim }}</p>
+                <p>{{ item.kodim || "-" }}</p>
               </div>
               <div>
                 <p class="text-gray-500">Taminotchi</p>
-                <p>{{ row.taminotchi }}</p>
+                <p>{{ item.taminotchi || "-" }}</p>
               </div>
               <div>
                 <p class="text-gray-500">Haridor</p>
-                <p>{{ row.haridor }}</p>
+                <p>{{ item.haridor || "-" }}</p>
               </div>
               <div>
                 <p class="text-gray-500">Miqdor</p>
                 <p class="flex items-center">
                   <span
                     :class="{
-                      'text-green-500': row.miqdor_change > 0,
-                      'text-red-500': row.miqdor_change < 0,
+                      'text-green-500': item.miqdor_change > 0,
+                      'text-red-500': item.miqdor_change < 0,
                     }"
                   >
                     {{
-                      row.miqdor_change > 0
+                      item.miqdor_change > 0
                         ? "▲"
-                        : row.miqdor_change < 0
+                        : item.miqdor_change < 0
                         ? "▼"
                         : ""
                     }}
                   </span>
-                  {{ row.miqdor }}
+                  {{ item.miqdor || item.soni }}
                 </p>
               </div>
               <div>
                 <p class="text-gray-500">Eni/Bo'yi</p>
-                <p>{{ row.eni }} / {{ row.boyi }}</p>
+                <p>{{ item.eni }} / {{ item.boyi }}</p>
               </div>
               <div>
                 <p class="text-gray-500">Nara</p>
-                <p>{{ row.nara }}</p>
+                <p>{{ item.narx }}</p>
               </div>
               <div>
                 <p class="text-gray-500">Umumiy Nara</p>
-                <p>{{ row.umumiy_nara }}</p>
+                <p>{{ item.umumiyNarx }}</p>
               </div>
               <div>
                 <p class="text-gray-500">Sana</p>
-                <p>{{ row.sana }}</p>
+                <p>{{ item.sana || "-" }}</p>
               </div>
             </div>
           </div>
@@ -302,7 +304,7 @@
     <Pagination
       v-slot="{ page }"
       :items-per-page="10"
-      :total="30"
+      :total="tableData.length"
       :default-page="1"
     >
       <PaginationContent v-slot="{ items }">
@@ -327,7 +329,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
 import {
   Pagination,
   PaginationContent,
@@ -346,177 +349,65 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const tableData = ref([
-  // ... (same as your original data)
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "1 200",
-    miqdor_change: 100,
-    nara: "100 000 UZS",
-    umumiy_nara: "40 000 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "122",
-    miqdor_change: -100,
-    nara: "100 000 UZS",
-    umumiy_nara: "12 200 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "1 400",
-    miqdor_change: 100,
-    nara: "100 000 UZS",
-    umumiy_nara: "140 000 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "330",
-    miqdor_change: 0,
-    nara: "100 000 UZS",
-    umumiy_nara: "33 000 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "133",
-    miqdor_change: -100,
-    nara: "100 000 UZS",
-    umumiy_nara: "13 300 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "133",
-    miqdor_change: 100,
-    nara: "100 000 UZS",
-    umumiy_nara: "13 300 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "330",
-    miqdor_change: 0,
-    nara: "100 000 UZS",
-    umumiy_nara: "33 000 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "1 200",
-    miqdor_change: 100,
-    nara: "100 000 UZS",
-    umumiy_nara: "120 000 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "330",
-    miqdor_change: 0,
-    nara: "100 000 UZS",
-    umumiy_nara: "33 000 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "1 200",
-    miqdor_change: -100,
-    nara: "100 000 UZS",
-    umumiy_nara: "120 000 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "133",
-    miqdor_change: 100,
-    nara: "100 000 UZS",
-    umumiy_nara: "13 300 000 UZS",
-    sana: "24.02.2023",
-  },
-  {
-    ombor: "Omborxona - 1",
-    kodim: "Husan Kamolov",
-    taminotchi: "Taminot - 1",
-    haridor: "Mahmud Namazov",
-    tovar: "REFLEX GREY Gilamlari",
-    eni: "400 Metr",
-    boyi: "1200 Metr",
-    miqdor: "330",
-    miqdor_change: 0,
-    nara: "100 000 UZS",
-    umumiy_nara: "33 000 000 UZS",
-    sana: "24.02.2023",
-  },
-]);
-</script>
+const token = localStorage.getItem("token");
+const tableData = ref([]);
 
+const safeNumber = (value) => {
+  const num = Number(value);
+  return isNaN(num) ? 0 : num;
+};
+
+const fetchData = async () => {
+  try {
+    const response = await axios.get("/warehouse/getall", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = Array.isArray(response.data)
+      ? response.data
+      : response.data.data;
+
+    tableData.value = data.map((item) => ({
+      id: item.id || Math.random().toString(36).substr(2, 9),
+      ombor: item.warehouse_warehouseName || "Noma'lum",
+      kodim: item.employee_name || "-",
+      taminotchi: item.supplier_name || "-",
+      haridor: item.customer_name || "-",
+      tovar: item.carpet_carpetDescription || "Noma'lum",
+      eni: safeNumber(item.carpet_height),
+      boyi: safeNumber(item.size_sizeWidth),
+      miqdor: safeNumber(item.carpet_length),
+      miqdor_change: safeNumber(item.quantity_change || 0),
+      nara: safeNumber(item.carpet_price),
+      umumiyNarx: safeNumber(item.total_price),
+      sana: item.created_at
+        ? new Date(item.created_at).toLocaleDateString()
+        : "-",
+    }));
+  } catch (error) {
+    console.error("Ma'lumotlarni olishda xatolik:", error);
+    tableData.value = [];
+  }
+};
+
+onMounted(fetchData);
+
+const formatCurrency = (amount, currency = "UZS") => {
+  const num = Number(amount);
+  return `${isNaN(num) ? 0 : num.toLocaleString()} ${currency}`;
+};
+
+const formatNumber = (num) => {
+  const n = Number(num);
+  return isNaN(n) ? "0" : n.toLocaleString("fr-FR");
+};
+
+const currencyClass = (currency) => {
+  return currency === "UZS"
+    ? "bg-blue-100 text-blue-800"
+    : "bg-green-100 text-green-800";
+};
+</script>
 <style scoped></style>

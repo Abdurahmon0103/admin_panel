@@ -1,10 +1,9 @@
+```vue
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
     <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
-      <!-- Header -->
       <div class="flex flex-col items-center mb-6">
         <div class="h-10 mb-3 flex items-center justify-center gap-2">
-          <!-- Logo -->
           <svg
             width="32"
             height="32"
@@ -24,7 +23,6 @@
         </p>
       </div>
 
-      <!-- Xatolik chiqishi -->
       <div v-if="showError" class="mb-3">
         <Alert variant="destructive">
           <AlertCircle class="w-4 h-4" />
@@ -35,7 +33,6 @@
         </Alert>
       </div>
 
-      <!-- Form -->
       <form @submit.prevent="login" class="space-y-4">
         <div>
           <label
@@ -104,20 +101,16 @@ import { useAuthStore } from "@/stores/auth";
 import { AlertCircle } from "lucide-vue-next";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-// Form data
 const userLogin = ref("");
 const userPassword = ref("");
 const rememberMe = ref(false);
 
-// State
 const isLoading = ref(false);
 const showError = ref(false);
 
-// Store va router
 const auth = useAuthStore();
 const router = useRouter();
 
-// Kirish funksiyasi
 async function login() {
   isLoading.value = true;
   showError.value = false;
@@ -129,9 +122,8 @@ async function login() {
 
   try {
     const response = await axios.post("/auth/login", payload);
-    console.log("✅ Javob:", response);
 
-    const token = response.data.accessToken; // bu nomni logdan aniqlang
+    const token = response.data.accessToken;
 
     if (token) {
       auth.login(token);
@@ -140,7 +132,7 @@ async function login() {
       showError.value = true;
     }
   } catch (error) {
-    console.error("❌ Login xatolik:", error);
+    console.error("Login xatolik:", error);
     showError.value = true;
   } finally {
     isLoading.value = false;
@@ -149,3 +141,4 @@ async function login() {
 </script>
 
 <style scoped></style>
+```

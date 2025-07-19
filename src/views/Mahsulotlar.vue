@@ -1,6 +1,6 @@
+```vue
 <template>
   <div class="p-4">
-    <!-- Filter Controls - Stacked on mobile -->
     <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
       <div class="relative w-full">
         <Select>
@@ -44,7 +44,6 @@
       </div>
     </div>
 
-    <!-- Search and Action Bar -->
     <div
       class="flex flex-col md:flex-row gap-4 mb-6 justify-between items-start md:items-center"
     >
@@ -76,7 +75,6 @@
 
           <div class="grid gap-4 py-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <!-- Standard Size -->
               <div class="space-y-1">
                 <Label>Standart size <span class="text-red-500">*</span></Label>
                 <Select>
@@ -90,13 +88,11 @@
                 </Select>
               </div>
 
-              <!-- Height -->
               <div class="space-y-1">
-                <Label>Boyi <span class="text-red-500">*</span></Label>
+                <Label>Bo'yi <span class="text-red-500">*</span></Label>
                 <Input type="text" />
               </div>
 
-              <!-- Currency -->
               <div class="space-y-1">
                 <Label>Valyuta <span class="text-red-500">*</span></Label>
                 <Select>
@@ -110,7 +106,6 @@
                 </Select>
               </div>
 
-              <!-- Warehouse -->
               <div class="space-y-1">
                 <Label>Ombor <span class="text-red-500">*</span></Label>
                 <Select>
@@ -124,7 +119,6 @@
                 </Select>
               </div>
 
-              <!-- Category -->
               <div class="space-y-1">
                 <Label>Kategoriya <span class="text-red-500">*</span></Label>
                 <Select>
@@ -138,26 +132,22 @@
                 </Select>
               </div>
 
-              <!-- Quantity -->
               <div class="space-y-1">
                 <Label>Miqdor <span class="text-red-500">*</span></Label>
                 <Input type="number" />
               </div>
 
-              <!-- Purchase Price -->
               <div class="space-y-1">
                 <Label>Tan narxi</Label>
                 <Input type="text" />
               </div>
 
-              <!-- Sale Price -->
               <div class="space-y-1">
                 <Label>Sotuv narxi</Label>
                 <Input type="text" />
               </div>
             </div>
 
-            <!-- Comment -->
             <div class="space-y-1">
               <Label>Izoh</Label>
               <Textarea class="min-h-[100px]" />
@@ -172,9 +162,7 @@
       </Dialog>
     </div>
 
-    <!-- Responsive Table -->
     <div class="overflow-x-auto shadow-sm rounded-lg border">
-      <!-- Desktop Table -->
       <table class="w-full hidden md:table bg-white text-sm">
         <thead class="bg-gray-50">
           <tr class="border-b">
@@ -210,14 +198,16 @@
             class="border-b hover:bg-gray-50"
           >
             <td class="py-3 px-4">{{ index + 1 }}</td>
-            <td class="py-3 px-4">{{ item.omborxona }}</td>
-            <td class="py-3 px-4 font-medium">{{ item.tovar }}</td>
+            <td class="py-3 px-4">{{ item.warehouse_warehouseName }}</td>
+            <td class="py-3 px-4 font-medium">
+              {{ item.tovar }}
+            </td>
             <td class="py-3 px-4">{{ item.code }}</td>
             <td class="py-3 px-4">{{ item.eni }}</td>
             <td class="py-3 px-4">{{ item.boyi }}</td>
-            <td class="py-3 px-4">{{ formatNumber(item.soni) }}</td>
-            <td class="py-3 px-4">{{ formatNumber(item.qoldiq) }}</td>
-            <td class="py-3 px-4">{{ formatNumber(item.jami) }}</td>
+            <td class="py-3 px-4">{{ item.soni }}</td>
+            <td class="py-3 px-4">{{ item.qoldiq }}</td>
+            <td class="py-3 px-4">{{ item.jami }}</td>
             <td class="py-3 px-4">
               <span
                 :class="currencyClass(item.valyuta)"
@@ -238,8 +228,6 @@
           </tr>
         </tbody>
       </table>
-
-      <!-- Mobile Cards -->
       <div class="md:hidden space-y-4 p-4">
         <div
           v-for="(item, index) in tableData"
@@ -249,7 +237,9 @@
           <div class="flex justify-between items-start">
             <div>
               <h3 class="font-medium">{{ index + 1 }}. {{ item.tovar }}</h3>
-              <p class="text-sm text-gray-500">{{ item.omborxona }}</p>
+              <p class="text-sm text-gray-500">
+                {{ item.warehouse_warehouseName }}
+              </p>
             </div>
             <span
               :class="currencyClass(item.valyuta)"
@@ -299,234 +289,83 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
+import { Search } from "lucide-vue-next";
+
 import {
   Select,
+  SelectTrigger,
+  SelectValue,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-vue-next";
 import {
   Dialog,
+  DialogTrigger,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogDescription,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-const tableData = ref([
-  {
-    id: 1,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 1200,
-    qoldiq: 1000,
-    jami: 4400,
-    valyuta: "UZS",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 120000000,
-  },
-  {
-    id: 2,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 400,
-    qoldiq: 150,
-    jami: 1123,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 40000000,
-  },
-  {
-    id: 3,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 122,
-    qoldiq: 90,
-    jami: 500,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 12200000,
-  },
-  {
-    id: 4,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 1400,
-    qoldiq: 1223,
-    jami: 4444,
-    valyuta: "UZS",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 140000000,
-  },
-  {
-    id: 5,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 330,
-    qoldiq: 100,
-    jami: 456,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 33000000,
-  },
-  {
-    id: 6,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 133,
-    qoldiq: 98,
-    jami: 200,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 13300000,
-  },
-  {
-    id: 7,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 133,
-    qoldiq: 10,
-    jami: 322,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 13300000,
-  },
-  {
-    id: 8,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 330,
-    qoldiq: 122,
-    jami: 1000,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 33000000,
-  },
-  {
-    id: 9,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 1200,
-    qoldiq: 500,
-    jami: 1222,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 120000000,
-  },
-  {
-    id: 10,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 330,
-    qoldiq: 111,
-    jami: 456,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 33000000,
-  },
-  {
-    id: 11,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 1200,
-    qoldiq: 788,
-    jami: 9000,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 120000000,
-  },
-  {
-    id: 12,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 133,
-    qoldiq: 10,
-    jami: 456,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 13300000,
-  },
-  {
-    id: 13,
-    omborxona: "Omborxona - 1",
-    tovar: "REFLEX GREY GILAMLARI",
-    code: 999,
-    eni: "400 sm",
-    boyi: "1200 sm",
-    soni: 330,
-    qoldiq: 223,
-    jami: 1112,
-    valyuta: "USD",
-    narx: 100000,
-    sotuvNarxi: 100000,
-    umumiyNarx: 33000000,
-  },
-]);
+const token = localStorage.getItem("token");
+const tableData = ref([]);
 
-const formatNumber = (num) => {
-  return num.toLocaleString("fr-FR");
+const safeNumber = (value) => {
+  const num = Number(value);
+  return isNaN(num) ? 0 : num;
 };
 
-const formatCurrency = (amount, currency) => {
-  return `${amount.toLocaleString("fr-FR")} ${currency}`;
+const fetchData = async () => {
+  try {
+    const response = await axios.get("/carpet/getall", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = Array.isArray(response.data)
+      ? response.data
+      : response.data.data;
+
+    tableData.value = data.map((item) => ({
+      id: item.id || Math.random().toString(36).substr(2, 9),
+      tovar: item.carpet_carpetDescription || "Noma'lum",
+      code: item.size_sizeCode || "-",
+      eni: safeNumber(item.carpet_height),
+      boyi: safeNumber(item.size_sizeWidth),
+      soni: safeNumber(item.carpet_length),
+      qoldiq: safeNumber(item.qoldiq),
+      jami: safeNumber(item.jami),
+      valyuta: item.currency_currencyName || "UZS",
+      narx: safeNumber(item.carpet_price),
+      sotuvNarxi: safeNumber(item.carpet_price),
+      umumiyNarx: safeNumber(item.umumiyNarx),
+      warehouse_warehouseName: item.warehouse_warehouseName || "-",
+    }));
+  } catch (error) {
+    console.error("Ma'lumotlarni olishda xatolik:", error);
+    tableData.value = [];
+  }
+};
+
+onMounted(fetchData);
+
+const formatCurrency = (amount, currency = "UZS") => {
+  const num = Number(amount);
+  return `${isNaN(num) ? 0 : num.toLocaleString()} ${currency}`;
+};
+
+const formatNumber = (num) => {
+  const n = Number(num);
+  return isNaN(n) ? "0" : n.toLocaleString("fr-FR");
 };
 
 const currencyClass = (currency) => {
@@ -535,3 +374,6 @@ const currencyClass = (currency) => {
     : "bg-green-100 text-green-800";
 };
 </script>
+
+<style scoped></style>
+```
