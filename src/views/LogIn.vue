@@ -1,4 +1,3 @@
-```vue
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
     <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
@@ -141,4 +140,3 @@ async function login() {
 </script>
 
 <style scoped></style>
-```
