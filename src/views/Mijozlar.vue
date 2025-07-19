@@ -164,21 +164,32 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+// User interfeys tipi
+type User = {
+  userFirstName: string;
+  userLastName?: string;
+  userNomer: string;
+  userEmail?: string;
+  createdAt?: string;
+  userDescription?: string;
+};
+
+// Jadval uchun tip
+type TableItem = {
+  fullName: string;
+  phone1: string;
+  phone2: string;
+  createdAt: string;
+  note: string;
+};
+
 // Tokenni localStorage'dan olish
 const token = localStorage.getItem("token");
 
-// Jadval ma'lumotlari
-const tableData = ref<
-  {
-    fullName: string;
-    phone1: string;
-    phone2: string;
-    createdAt: string;
-    note: string;
-  }[]
->([]);
+// Jadvaldagi ma’lumotlar
+const tableData = ref<TableItem[]>([]);
 
-// Ma'lumotlarni yuklash
+// Ma’lumotlarni yuklovchi funksiyasi
 const fetchUsers = async () => {
   try {
     const response = await axios.get("/user/getall", {
@@ -187,26 +198,26 @@ const fetchUsers = async () => {
       },
     });
 
-    const users = Array.isArray(response.data)
+    const users: User[] = Array.isArray(response.data)
       ? response.data
       : response.data.data;
 
-    tableData.value = users.map((user) => ({
-      fullName: `${user.userFirstName} ${user.userLastName || ""}`.trim(),
-      phone1: user.userNomer,
-      phone2: user.userEmail || "—",
-      createdAt: user.createdAt?.slice(0, 10) || "—",
-      note: user.userDescription || "—",
-    }));
+    tableData.value = users.map(
+      (user: User): TableItem => ({
+        fullName: `${user.userFirstName} ${user.userLastName || ""}`.trim(),
+        phone1: user.userNomer,
+        phone2: user.userEmail || "—",
+        createdAt: user.createdAt?.slice(0, 10) || "—",
+        note: user.userDescription || "—",
+      })
+    );
   } catch (error) {
     console.error("Foydalanuvchilarni olishda xatolik:", error);
   }
 };
 
+// Sahifa yuklanganda ma'lumotni olish
 onMounted(() => {
   fetchUsers();
 });
 </script>
-
-<style scoped></style>
-x``
